@@ -779,12 +779,6 @@ function showHymn(n){
 
   let html=`<div class="hymn-number">${n}</div>`;
   html+=`<div class="hymn-first-line">${h.fl}</div>`;
-  html+=`<div class="hymn-meta">
-    <div><span class="label">Author</span><div class="value">${h.a||'—'}</div></div>
-    <div><span class="label">Meter</span><div class="value">${h.m||'—'}</div></div>
-    <div><span class="label">Tune</span><div class="value">${h.tn||'—'}</div></div>
-    <div><span class="label">Composer</span><div class="value">${h.tc||'—'}</div></div>
-  </div>`;
 
   h.v.forEach(v=>{
     const lines=v.t.replace(/&/g,'&amp;').replace(/</g,'&lt;');
@@ -792,6 +786,13 @@ function showHymn(n){
     const th=v.th.length?`<div class="verse-themes" style="${thStyle}">${v.th.join(', ')}</div>`:'';
     html+=`<div class="verse"><div class="verse-num">${v.n}</div><div><div class="verse-text">${lines}</div>${th}</div></div>`;
   });
+
+  html+=`<div class="hymn-meta">
+    <div><span class="label">Author</span><div class="value">${h.a||'—'}</div></div>
+    <div><span class="label">Meter</span><div class="value">${h.m||'—'}</div></div>
+    <div><span class="label">Tune</span><div class="value">${h.tn||'—'}</div></div>
+    <div><span class="label">Composer</span><div class="value">${h.tc||'—'}</div></div>
+  </div>`;
 
   // Theme weights
   const sorted=Object.entries(h.w).sort((a,b)=>b[1]-a[1]);
